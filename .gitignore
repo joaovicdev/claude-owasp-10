@@ -1,0 +1,9 @@
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# a project's own findings never belong in this repo — only the template does
+SECURITY-NOTES.md
+!templates/SECURITY-NOTES.md
