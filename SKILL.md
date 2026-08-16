@@ -61,6 +61,10 @@ consumer:
 Adding a review question to a file automatically extends every consumer. That is
 the intent: extend the file, never fork the material.
 
+`api-secure-report/` in this repository is the reference consumer — it reads
+these files, iterates the review questions, and cites the ids. Read it before
+writing another one.
+
 ## Honest limits
 
 `stacks/nestjs.md` is grounded in four real codebases. `stacks/laravel.md` and

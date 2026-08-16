@@ -14,18 +14,21 @@ owasp/            A01..A10, agnostic core
 stacks/           nestjs.md, laravel.md, spring-boot.md
 templates/        claude-md-snippet.md, the trigger (required — see step 2)
                   SECURITY-NOTES.md, copied into a project to track its findings
+api-secure-report/  a second skill — /api-secure-report, see below
 ```
 
 ## Install
 
 **Step 1 — clone and symlink.** Clone anywhere you keep your repositories. The
-symlink name is what Claude Code uses as the skill name, so it must be
-`secure-coding` regardless of where the clone lives.
+symlink name is what Claude Code uses as the skill name, so both names are fixed
+regardless of where the clone lives. The repository ships two skills, so it takes
+two symlinks.
 
 ```bash
 git clone <this repo> claude-owasp-10
 mkdir -p ~/.claude/skills
 ln -sfn "$(pwd)/claude-owasp-10" ~/.claude/skills/secure-coding
+ln -sfn "$(pwd)/claude-owasp-10/api-secure-report" ~/.claude/skills/api-secure-report
 ```
 
 **Step 2 — install the trigger. This step is not optional.** The skill only helps
@@ -38,6 +41,29 @@ that routes, guards, queries, auth, config, and dependency changes require loadi
 the matching manifest rows first.
 
 Skip step 2 and the skill sits on disk doing nothing.
+
+## `/api-secure-report`
+
+The second skill is the reference consumer of the material above. Run it inside a
+backend project and it enumerates **every** route, marks each one clean or
+carrying findings, and reports each finding as *route → vulnerability → how an
+attacker exploits it → mitigation*, citing the id it came from.
+
+```bash
+/api-secure-report            # pt-BR, whole repository
+/api-secure-report en         # another language; ids, paths and code stay as-is
+/api-secure-report pt-BR src/modules/orders   # scoped to a subdirectory
+```
+
+It prints to the terminal and writes `SECURITY-REPORT.md` to the root of the
+project under review, overwriting the previous one. That file quotes internal
+paths and describes how to exploit them — decide deliberately whether it belongs
+in version control.
+
+Route enumeration and the output shape live in
+[`api-secure-report/references/`](api-secure-report/references/). The scan itself
+fans out across subagents, one per module plus one per cross-cutting area, each
+running the `## Grep signals` of its assigned files before reading any code.
 
 ## Per-project findings
 
