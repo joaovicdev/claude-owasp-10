@@ -38,10 +38,17 @@ have read real projects and rewritten the items around what they got wrong.
    client identifiers — this repo is publishable. Concrete findings belong in that
    project's `SECURITY-NOTES.md`.
 6. **Add `## Grep signals`** at the end, tuned to the language.
-7. **Wire it up**: add a row to the manifest in `SKILL.md`, add the detection file
-   to the stack-detection list in `templates/claude-md-snippet.md` (and in your
-   own global `CLAUDE.md`, which is where that snippet ends up), and add a row to
-   the `## Idiom by stack` table of each core file the items serve.
+7. **Wire it up**: add a row to the manifest in `skills/secure-coding/SKILL.md`,
+   add the detection file to the stack list in `skills/secure-coding/TRIGGER.md`
+   and to Step 1 of `skills/api-secure-report/SKILL.md`, and add a row to the
+   `## Idiom by stack` table of each core file the items serve.
+8. **Run `./scripts/check-ids.sh`.** It fails on a manifest row pointing at a
+   missing file, a `→ stacks/x.md (ID)` naming an id that does not exist, a gap
+   in review-question numbering, a stack file with no `**Status:**` header, and a
+   shipped file that hardcodes an install path. Green is the bar for a PR.
+
+`skills/secure-coding/stacks/_TEMPLATE.md` is the blank, with this recipe's
+wiring steps repeated in comments so they are in front of you while you write.
 
 ## Cross-reference discipline
 

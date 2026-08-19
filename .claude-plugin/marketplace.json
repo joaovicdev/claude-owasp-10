@@ -1,0 +1,20 @@
+{
+  "name": "claude-owasp-10",
+  "description": "OWASP Top 10:2025 secure-coding material for Claude Code, written to be read by an agent while it writes backend code.",
+  "owner": {
+    "name": "João Victor",
+    "url": "https://github.com/joaovicdev"
+  },
+  "plugins": [
+    {
+      "name": "secure-coding",
+      "description": "OWASP Top 10:2025 rules for writing and reviewing backend/API code in any language, plus /api-secure-report — a full security inventory of every HTTP route in a project.",
+      "source": "./",
+      "version": "1.0.0",
+      "category": "security",
+      "tags": ["security", "owasp", "code-review", "backend", "api"],
+      "homepage": "https://github.com/joaovicdev/claude-owasp-10",
+      "license": "MIT"
+    }
+  ]
+}

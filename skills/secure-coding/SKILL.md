@@ -24,7 +24,13 @@ lives only in `stacks/`.
 2. Read the manifest rows below that match what you are about to touch. Read
    those files. Do not read all ten.
 3. If `SECURITY-NOTES.md` exists at the project root, read it — it carries that
-   project's known-open findings and accepted risks.
+   project's known-open findings and accepted risks. If it does not exist and the
+   project has findings worth tracking, `templates/SECURITY-NOTES.md` beside this
+   file is the blank to copy there.
+
+Every path in this file is relative to this skill's own directory, so the same
+bytes work whether the skill was installed as a plugin, committed into a
+project's `.claude/skills/`, or linked into the user's global skills directory.
 
 ## Manifest
 
@@ -61,9 +67,9 @@ consumer:
 Adding a review question to a file automatically extends every consumer. That is
 the intent: extend the file, never fork the material.
 
-`api-secure-report/` in this repository is the reference consumer — it reads
-these files, iterates the review questions, and cites the ids. Read it before
-writing another one.
+The `api-secure-report` skill, shipped alongside this one, is the reference
+consumer — it reads these files, iterates the review questions, and cites the
+ids. Read it before writing another one.
 
 ## Honest limits
 

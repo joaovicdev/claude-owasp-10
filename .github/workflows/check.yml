@@ -1,0 +1,42 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Shell syntax
+        run: |
+          bash -n install.sh
+          bash -n scripts/check-ids.sh
+
+      - name: Manifests are valid JSON and agree with each other
+        run: |
+          python3 -c "import json;json.load(open('.claude-plugin/plugin.json'))"
+          python3 -c "import json;json.load(open('.claude-plugin/marketplace.json'))"
+
+      - name: Every skill and agent has the frontmatter Claude Code requires
+        run: |
+          for f in skills/*/SKILL.md agents/*.md; do
+            head -1 "$f" | grep -qx -- '---' || { echo "$f: no frontmatter"; exit 1; }
+            grep -qE '^name: ' "$f"        || { echo "$f: no name"; exit 1; }
+            grep -qE '^description: ' "$f" || { echo "$f: no description"; exit 1; }
+          done
+
+      - name: Material integrity
+        run: ./scripts/check-ids.sh
+
+      - name: Installs into a clean repository
+        run: |
+          mkdir -p /tmp/target && git -C /tmp/target init -q
+          ./install.sh --project /tmp/target
+          ./install.sh --project /tmp/target   # must be idempotent
+          ./install.sh --check   /tmp/target
+          test "$(grep -c 'TRIGGER.md' /tmp/target/CLAUDE.md)" = 1
+          test -f /tmp/target/.claude/agents/security-auditor.md

@@ -1,0 +1,13 @@
+{
+  "name": "secure-coding",
+  "description": "OWASP Top 10:2025 rules for writing and reviewing backend/API code in any language, plus /api-secure-report — a full security inventory of every HTTP route in a project.",
+  "version": "1.0.0",
+  "author": {
+    "name": "João Victor",
+    "url": "https://github.com/joaovicdev"
+  },
+  "homepage": "https://github.com/joaovicdev/claude-owasp-10",
+  "repository": "https://github.com/joaovicdev/claude-owasp-10",
+  "license": "MIT",
+  "keywords": ["security", "owasp", "code-review", "backend", "api"]
+}

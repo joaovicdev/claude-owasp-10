@@ -1,16 +1,4 @@
-# The trigger — paste this into your global `CLAUDE.md`
-
-Without this, the skill is inert. "Add an endpoint" does not read as a security
-request, so nothing makes the agent open `SKILL.md` on its own.
-
-Copy everything below the line into `~/.claude/CLAUDE.md` (or your project's
-`CLAUDE.md` if you only want it in one repo). It does two jobs: it inlines the
-handful of rules that must never require a file read, and it states the hard rule
-that certain changes require loading the matching manifest rows first.
-
-Adjust the stack-detection list if you work in a stack this repo does not ship.
-
----
+<!-- secure-coding trigger v1.0.0 — github.com/joaovicdev/claude-owasp-10 -->
 
 ## Security baseline
 
@@ -34,12 +22,11 @@ the full material is the `secure-coding` skill.
    lockfile, and note that install hooks execute code.
 
 **Before writing or modifying** a route handler, controller, guard/policy/filter,
-auth or session flow, query, app bootstrap/config, or dependency manifest: read
-`~/.claude/skills/secure-coding/SKILL.md` and load the manifest rows matching the
-change. Detect the stack — `nest-cli.json` → `stacks/nestjs.md`, `artisan`/
-`composer.json` → `stacks/laravel.md`, `pom.xml`/`build.gradle` →
-`stacks/spring-boot.md`; no match means the language-agnostic core still applies.
-If `SECURITY-NOTES.md` exists at the project root, read it too.
+auth or session flow, query, app bootstrap/config, or dependency manifest: load
+the **`secure-coding`** skill and read the manifest rows matching the change.
+Detect the stack — `nest-cli.json` → NestJS, `artisan`/`composer.json` → Laravel,
+`pom.xml`/`build.gradle` → Spring Boot; no match means the language-agnostic core
+still applies. If `SECURITY-NOTES.md` exists at the project root, read it too.
 
 Flag a violation even when the user did not ask about security, and even when the
 surrounding code already violates it — say so once, concisely, and follow the

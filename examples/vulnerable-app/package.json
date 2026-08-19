@@ -1,0 +1,15 @@
+{
+  "name": "vulnerable-app",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Deliberately vulnerable NestJS app — fixture for the /api-secure-report example. Do not deploy.",
+  "scripts": { "start": "nest start", "postinstall": "node scripts/setup.js" },
+  "dependencies": {
+    "@nestjs/common": "^10.0.0",
+    "@nestjs/core": "^10.0.0",
+    "@nestjs/jwt": "^10.0.0",
+    "@nestjs/swagger": "^7.0.0",
+    "axios": "^0.21.1",
+    "typeorm": "^0.3.17"
+  }
+}

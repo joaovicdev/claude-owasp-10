@@ -6,4 +6,8 @@
 
 # a project's own findings never belong in this repo — only the template does
 SECURITY-NOTES.md
-!templates/SECURITY-NOTES.md
+!skills/secure-coding/templates/SECURITY-NOTES.md
+
+# a generated report quotes internal paths and describes how to exploit them
+SECURITY-REPORT.md
+!examples/SECURITY-REPORT.example.md
