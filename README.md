@@ -185,7 +185,7 @@ written for this repository. They are not an OWASP publication.
 Foundation.** "OWASP" is their trademark and appears here only to identify the
 material this skill is built from.
 
-## Licence
+## License
 
 MIT — see [`LICENSE`](LICENSE).
 
