@@ -70,3 +70,16 @@ apply. Add it where the manifest row alone over-triggers, and nowhere else.
 The ten core files are agnostic. Anything that names a framework, a package, or a
 language API belongs in `stacks/`. The test: if a sentence would confuse someone
 reading it in a Go or Python project, it is in the wrong file.
+
+## Conventions worth preserving
+
+- **IDs are stable and never renumbered.** A future edition goes in
+  `owasp/2029/` alongside, so a finding citing `A05.Q2` stays resolvable.
+- **`## Review questions`** are the contract a review skill iterates over. Adding
+  one extends every consumer.
+- **`## Grep signals`** are a pre-filter, not proof.
+- **Nothing restates the material.** Consumers read these files and cite ids.
+- **Nothing shipped hardcodes an install path** — that is what lets one set of
+  bytes work as a plugin, in a project, or in your home directory.
+
+`./scripts/check-ids.sh` enforces all of these that can be enforced mechanically.
